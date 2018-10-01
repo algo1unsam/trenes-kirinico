@@ -1,0 +1,22 @@
+import trenes.*
+import vagones.*
+
+test "la formacion cuenta con 500 pasajeros" {
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	assert.equals(500, formacion.totalPasajeros())
+}
+
+test "la formacion cuenta con vagones de pasajeros livianos " {
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	vagonPasajero.largo(5000)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonCarga)
+	assert.equals([vagonCarga], formacion.vagonesLivianos())
+}
+
+

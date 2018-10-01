@@ -1,3 +1,5 @@
+import vagones.*
+import locomotoras.*
 class Formacion {
 
 	var locomotoras = []
@@ -28,78 +30,42 @@ class Formacion {
 	method esEficiente() {
 		return locomotoras.any({ locomotora => locomotora.pesoDeLosVagones() > (locomotora.pesoDeLosVagones() * 5) })
 	}
-	
-	method puedeMoverse(){
-		return self.sumatoriaDeArrastre()> self.sumatoriaDePeso()
-	}
-	
-	method sumatoriaDeArrastre(){
-		return locomotoras.sum({locomotora => locomotora.arrastreUtil()})
-	}
-	
-	method sumatoriaDePeso(){
-		return vagones.sum({vagon => vagon.peso()})
-	}
-}
 
-class Locomotora {
-
-	var property peso = 20
-	var property pesoMaximoQueArrastra = 1000
-	var property velocidad = 50
-	var vagones = []
-
-	method arrastreUtil() {
-		return  pesoMaximoQueArrastra - self.pesoDeLosVagones() - self.peso()
+	method puedeMoverse() {
+		return self.sumatoriaDeArrastre() > self.sumatoriaDePeso()
 	}
 
-	method agregar(vagon) {
-		vagones.add(vagon)
+	method sumatoriaDeArrastre() {
+		return locomotoras.sum({ locomotora => locomotora.arrastreUtil() })
 	}
 
-	method pesoDeLosVagones() {
+	method sumatoriaDePeso() {
 		return vagones.sum({ vagon => vagon.peso() })
 	}
 
-}
-
-class VagonPasajero {
-
-	var property largo = 50
-	var property ancho = 20
-
-	method cantidadPasajeros() {
-		if (ancho <= 2.5) {
-			return largo * 8
+	method kilosDeEmpujeNecesarioParaMoverse() {
+		if (self.puedeMoverse()) {
+			return 0
 		} else {
-			return largo * 10
+			return self.sumatoriaDePeso() - self.sumatoriaDeArrastre()
 		}
 	}
 
-	method peso() {
-		return self.cantidadPasajeros() + 160
+	method vagonMasPesado() {
+		return vagones.max({ vagon => vagon.peso() })
 	}
 
-}
-
-class VagonCarga {
-
-	var property cargaMaxima = 50
-
-	method peso() {
-		return self.cantidadPasajeros() + self.cargaMaxima() + 160
+	method totalDeVagonesYLocomotoras() {
+		return vagones.size() + locomotoras.size()
 	}
 
-	method cantidadPasajeros() {
-		return 2
+	method pesoTotal() {
+		return self.sumatoriaDePeso() + locomotoras.sum({ locomotora => locomotora.peso() })
 	}
 
-}
-
-class Deposito {
-
-	var formaciones = []
-	var locomotorasSueltas = []
+	method estaFormacionEsCompleja() {
+		return (self.totalDeVagonesYLocomotoras() > 20 || self.pesoTotal() > 10000  )
+	}
 
 }
 

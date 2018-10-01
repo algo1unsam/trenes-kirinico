@@ -1,0 +1,52 @@
+import deposito.*
+import trenes.*
+import vagones.*
+import locomotoras.*
+
+test "el conjunto de vagones pesados es uno de carga y otro de pasajeros"{
+	var deposito = new Deposito()
+	var formacion = new Formacion()
+	var formacion1 = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	formacion.agragar(vagonPasajero)
+	deposito.agregar(formacion)
+	deposito.agregar(formacion1)	
+	formacion1.agragar(vagonCarga)
+	formacion.agregarLocomotoras(locomotora)
+	assert.equals([vagonPasajero, vagonCarga], deposito.conjuntoDeVagonesPesado())
+}
+
+test "el deposito tiene un conductor experimentado"{
+	var deposito = new Deposito()
+	var formacion = new Formacion()
+	var formacion1 = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	formacion.agragar(vagonPasajero)
+	deposito.agregar(formacion)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agregarLocomotoras(locomotora)
+	assert.that(deposito.conductorExperimentado())
+}

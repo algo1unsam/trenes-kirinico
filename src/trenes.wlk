@@ -9,6 +9,9 @@ class Formacion {
 		return vagones.sum({ vagon => vagon.cantidadPasajeros() })
 	}
 
+	method agregarLocomotoras(locomotorasN){
+		locomotoras.add(locomotorasN)
+	}
 	method agragar(vagon) {
 		vagones.add(vagon)
 	}
@@ -23,12 +26,16 @@ class Formacion {
 	// punto1
 	}
 
-	method velocidadMaxima() {
-		return (locomotoras.sum({ locomotora => locomotora.velocidad() })) / locomotora.size()
+	method sumatoriaDeVelocidades() {
+		return (locomotoras.sum({ locomotora => locomotora.velocidad() }))
+	}
+	
+	method velocidadPromedio(){
+		return self.sumatoriaDeVelocidades() / locomotoras.size()
 	}
 
 	method esEficiente() {
-		return locomotoras.any({ locomotora => locomotora.pesoDeLosVagones() > (locomotora.pesoDeLosVagones() * 5) })
+		return locomotoras.all({ locomotora => locomotora.arrastreUtil() >= (locomotora.peso() * 5) })
 	}
 
 	method puedeMoverse() {

@@ -1,5 +1,7 @@
 import trenes.*
 import vagones.*
+import locomotoras.*
+import deposito.*
 
 test "la formacion cuenta con 500 pasajeros" {
 	var formacion = new Formacion()
@@ -9,7 +11,7 @@ test "la formacion cuenta con 500 pasajeros" {
 	assert.equals(500, formacion.totalPasajeros())
 }
 
-test "la formacion cuenta con vagones de pasajeros livianos " {
+test "la formacion cuenta con vagones de carga livianos " {
 	var formacion = new Formacion()
 	var vagonPasajero = new VagonPasajero()
 	var vagonCarga = new VagonCarga()
@@ -19,4 +21,82 @@ test "la formacion cuenta con vagones de pasajeros livianos " {
 	assert.equals([vagonCarga], formacion.vagonesLivianos())
 }
 
+test "la cantidad de vagones de carga livianos son 2 " {
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	vagonPasajero.largo(5000)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonCarga)
+	formacion.agragar(vagonCarga)
+	assert.equals(2, formacion.cantidadDeVagonesLiviano())
+}
+
+test "la velocidad promedio de las locomotoras es 70" {
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	var locomotora2 = new Locomotora()
+	
+	formacion.agregarLocomotoras(locomotora)
+	formacion.agregarLocomotoras(locomotora2)
+	locomotora.velocidad(65)
+	locomotora2.velocidad(75)
+	
+	assert.equals(70,formacion.velocidadPromedio())
+}
+
+test "la locomotora es eficiente"{
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonCarga)
+	formacion.agragar(vagonCarga)	
+	formacion.agregarLocomotoras(locomotora)
+	
+	assert.that(formacion.esEficiente())
+	
+}
+
+test "la formacion puede moverse"{
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonCarga)
+	formacion.agragar(vagonCarga)	
+	formacion.agregarLocomotoras(locomotora)
+	assert.that(formacion.puedeMoverse())
+	
+}
+
+test "necesita 70 para poder moverse la locomotora"{
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonCarga)	
+	formacion.agregarLocomotoras(locomotora)
+	locomotora.peso(38)
+	assert.equals(70, formacion.kilosDeEmpujeNecesarioParaMoverse())
+}
+
+test "el total de los vagones y locomotoras es: 4"{
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonCarga)	
+	formacion.agregarLocomotoras(locomotora)
+	assert.equals(4, formacion.totalDeVagonesYLocomotoras())
+	
+}
 

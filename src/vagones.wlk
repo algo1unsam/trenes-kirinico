@@ -12,6 +12,7 @@ class VagonPasajero {
 		}
 	}
 
+
 	method peso() {
 		return self.cantidadPasajeros() + 160
 	}

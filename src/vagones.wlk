@@ -3,6 +3,7 @@ class VagonPasajero {
 	var property largo = 25
 	var property ancho = 10
 
+
 	method cantidadPasajeros() {
 		if (ancho <= 2.5) {
 			return largo * 8

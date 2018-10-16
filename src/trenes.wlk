@@ -95,6 +95,7 @@ class FormacionLargaDistancia inherits Formacion {
 	var destino = true
 	
 	
+	
 	method formacionBienArmada() {
 		return self.banos() && self.puedeMoverse()
 	}

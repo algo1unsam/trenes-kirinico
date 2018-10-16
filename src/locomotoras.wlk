@@ -3,18 +3,11 @@ class Locomotora {
 	var property peso = 20
 	var property pesoMaximoQueArrastra = 1000
 	var property velocidad = 80
-	var vagones = []
+
 
 	method arrastreUtil() {
-		return pesoMaximoQueArrastra - self.pesoDeLosVagones() - self.peso()
+		return pesoMaximoQueArrastra - self.peso()
 	}
 
-	method agregar(vagon) {
-		vagones.add(vagon)
-	}
-
-	method pesoDeLosVagones() {
-		return vagones.sum({ vagon => vagon.peso() })
-	}
 
 }

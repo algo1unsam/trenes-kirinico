@@ -21,18 +21,18 @@ class Deposito {
 	method agregarlocomotoras(locomotoraNueva) {
 		locomotorasSueltas.add(locomotoraNueva)
 	}
-/* 
-	method agregarLocomotoraSueltaA(formacion) {
+ 
+	method agregarLocomotoraSueltaA(formacion,locomotora) {
 		
 		if (!formacion.puedeMoverse()) {
-			formacion.add(self.mostrarLocomotoras())
-			locomotorasSueltas.remove()
+			formacion.agragar(self.locomotoraCandidata(formacion))
+			locomotorasSueltas.remove(locomotora)
 		}
 		
 	}
-*/
-	method mostrarLocomotoras() {
-		return locomotorasSueltas
+
+	method locomotoraCandidata(formacion) {
+		return locomotorasSueltas.find ({locomotora => locomotora.arrastreUtil()>= formacion.cantidadQueLeFaltaParaMoverse()})
 	}
 
 }

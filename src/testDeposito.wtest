@@ -50,3 +50,20 @@ test "el deposito tiene un conductor experimentado"{
 	formacion.agregarLocomotoras(locomotora)
 	assert.that(deposito.conductorExperimentado())
 }
+
+test "la formacion necesita un tren para poder moverse"{
+	var deposito = new Deposito()
+	var formacion = new Formacion()
+	var vagonPasajero = new VagonPasajero()
+	var vagonCarga = new VagonCarga()
+	var locomotora = new Locomotora()
+	var locomotora1 = new Locomotora()
+	
+	locomotora.pesoMaximoQueArrastra(5)
+	formacion.agragar(vagonPasajero)
+	formacion.agragar(vagonPasajero)	
+	formacion.agregarLocomotoras(locomotora)
+	deposito.agregarlocomotoras(locomotora1)
+	deposito.agregarLocomotoraSueltaA(formacion, locomotora1)
+	assert.that(formacion.mostrarLocomotora().contains(locomotora1))
+}

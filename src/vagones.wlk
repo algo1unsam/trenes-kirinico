@@ -1,5 +1,5 @@
 class VagonPasajero {
-
+	var property cantidadBano = 2
 	var property largo = 25
 	var property ancho = 10
 
@@ -18,7 +18,7 @@ class VagonPasajero {
 }
 
 class VagonCarga {
-
+	var property cantidadBano = 0
 	var property cargaMaxima = 50
 
 	method peso() {

@@ -33,7 +33,7 @@ class Formacion {
 	}
 
 	method velocidadMaximaLocomotora() {
-		return locomotoras.min({locomotora => locomotora.velocidad()}).velocidad()
+		return locomotoras.min({ locomotora => locomotora.velocidad() }).velocidad()
 	}
 
 	method velocidadPromedio() {
@@ -91,32 +91,32 @@ class Formacion {
 }
 
 class FormacionLargaDistancia inherits Formacion {
-	var origen= true 
+
+	var origen = true
 	var destino = true
-	
-	
 
 	method formacionBienArmada() {
 		return self.banos() && self.puedeMoverse()
 	}
 
-	method velocidadLimite(){
-		if (destino && origen){
+	method velocidadLimite() {
+		if (destino && origen) {
 			return 200
-		}
-		
-		else {
+		} else {
 			return 150
 		}
 	}
-	
-	method velocidadMaxima(){
+
+	method velocidadMaxima() {
 		return self.velocidadMaximaLocomotora().min(self.velocidadLimite())
 	}
+
 }
 
 class FormacionCortaDistancia inherits Formacion {
+
 	const velocidadLimite = 60
+
 	method formacionBienArmada() {
 		return (!self.estaFormacionEsCompleja()) && self.puedeMoverse()
 	}

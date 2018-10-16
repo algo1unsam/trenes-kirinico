@@ -1,8 +1,8 @@
 class VagonPasajero {
+
 	var property cantidadBano = 2
 	var property largo = 25
 	var property ancho = 10
-
 
 	method cantidadPasajeros() {
 		if (ancho <= 2.5) {
@@ -12,7 +12,6 @@ class VagonPasajero {
 		}
 	}
 
-
 	method peso() {
 		return self.cantidadPasajeros() + 160
 	}
@@ -20,6 +19,7 @@ class VagonPasajero {
 }
 
 class VagonCarga {
+
 	var property cantidadBano = 0
 	var property cargaMaxima = 50
 
@@ -32,3 +32,4 @@ class VagonCarga {
 	}
 
 }
+
